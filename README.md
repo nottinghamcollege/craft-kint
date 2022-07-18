@@ -1,12 +1,12 @@
-# Kint plugin for Craft CMS 3.x
+# Kint plugin for Craft CMS 4.x
 
-Adds Kint, an in-app PHP debugger, to Craft CMS 3.x for use in Twig and PHP.
+Adds Kint, an in-app PHP debugger, to Craft CMS 4.x for use in Twig and PHP.
 
 ![Screenshot](resources/screenshots/screenshot.png)
 
 ## Requirements
 
-This plugin requires Craft CMS 3.0 or later.
+This plugin requires Craft CMS 4.0 or later.
 
 ## Installation
 

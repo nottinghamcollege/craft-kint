@@ -12,14 +12,15 @@ namespace mildlygeeky\kint\twigextensions;
 
 use Kint\Kint;
 use Kint\Parser\MicrotimePlugin;
-use mildlygeeky\kint\Plugin;
+use Twig\Extension\AbstractExtension;
+use Twig\TwigFunction;
 
 /**
  * @author    Mildly Geeky, Inc.
  * @package   Kint
  * @since     1.0.0
  */
-class KintTwigExtension extends \Twig_Extension
+class KintTwigExtension extends AbstractExtension
 {
     // Public Methods
     // =========================================================================
@@ -27,7 +28,7 @@ class KintTwigExtension extends \Twig_Extension
     /**
      * @inheritdoc
      */
-    public function getName()
+    public function getName(): string
     {
         return 'Kint';
     }
@@ -35,26 +36,32 @@ class KintTwigExtension extends \Twig_Extension
     /**
      * @inheritdoc
      */
-    public function getFunctions()
+    public function getFunctions(): array
     {
         return [
-            new \Twig_SimpleFunction('microtime', [$this, 'microtime']),
-            new \Twig_SimpleFunction('trace', [$this, 'trace']),
+            new TwigFunction('microtime', [$this, 'microtime']),
+            new TwigFunction('trace', [$this, 'trace']),
         ];
     }
 
-    public function trace()
+    /**
+     * @return void
+     */
+    public function trace(): void
     {
         Kint::trace();
-        return null;
     }
 
-    public function microtime($reset = false)
+    /**
+     * @param bool $reset
+     * @return void
+     */
+    public function microtime(bool $reset = false): void
     {
         if ($reset) {
             MicrotimePlugin::clean();
         }
+
         Kint::dump(microtime());
-        return null;
     }
 }

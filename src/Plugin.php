@@ -11,12 +11,11 @@
 namespace mildlygeeky\kint;
 
 use Craft;
+use craft\base\Model;
 use craft\base\Plugin as BasePlugin;
-
 use Kint\Kint;
 use mildlygeeky\kint\models\Settings;
 use mildlygeeky\kint\twigextensions\KintTwigExtension as CraftKintTwigExtension;
-
 use Kint\Renderer\RichRenderer;
 use Kint\Twig\TwigExtension as KintTwigExtension;
 
@@ -38,15 +37,8 @@ class Plugin extends BasePlugin
     /**
      * @var Plugin
      */
-    public static $plugin;
+    public static Plugin $plugin;
 
-    // Public Properties
-    // =========================================================================
-
-    /**
-     * @var string
-     */
-    public $schemaVersion = '1.0.0';
 
     // Public Methods
     // =========================================================================
@@ -62,36 +54,28 @@ class Plugin extends BasePlugin
         Kint::$aliases[] = 'time';
 
         RichRenderer::$theme = $this->getSettings()->kintDisplayTheme ?: 'original.css';
-        Craft::$app->view->registerTwigExtension(new KintTwigExtension());
-        Craft::$app->view->registerTwigExtension(new CraftKintTwigExtension());
+        Craft::$app->getView()->registerTwigExtension(new KintTwigExtension());
+        Craft::$app->getView()->registerTwigExtension(new CraftKintTwigExtension());
     }
 
     /**
      * @inheritdoc
      */
-    protected function createSettingsModel()
+    protected function createSettingsModel(): Model
     {
         return new Settings();
     }
 
     /**
      * @inheritdoc
-     * @throws \Twig_Error_Loader
-     * @throws Exception
      */
     protected function settingsHtml(): string
     {
-        try {
-            return Craft::$app->view->renderTemplate(
-                'kint/settings',
-                [
-                    'settings' => $this->getSettings()
-                ]
-            );
-        } catch (\Twig_Error_Loader $e) {
-            throw $e;
-        } catch (Exception $e) {
-            throw $e;
-        }
+        return Craft::$app->getView()->renderTemplate(
+            'kint/settings',
+            [
+                'settings' => $this->getSettings()
+            ]
+        );
     }
 }

@@ -1,8 +1,8 @@
 {
     "name": "mildlygeeky/craft-kint",
-    "description": "Adds Kint, an in-app PHP debugger, to Craft CMS 3.x for use in Twig and PHP.",
+    "description": "Adds Kint, an in-app PHP debugger, to Craft CMS 4.x for use in Twig and PHP.",
     "type": "craft-plugin",
-    "version": "1.0.0",
+    "version": "2.0.0",
     "keywords": [
         "craft",
         "cms",
@@ -22,9 +22,9 @@
         }
     ],
     "require": {
-        "craftcms/cms": "^3.0.0-RC1",
+        "craftcms/cms": "^4.0",
         "kint-php/kint": "^3.1",
-        "kint-php/kint-twig": "^2.0",
+        "kint-php/kint-twig": "^3.0",
         "kint-php/kint-js": "^2.0"
     },
     "autoload": {

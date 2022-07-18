@@ -23,9 +23,9 @@ class Settings extends Model
     // =========================================================================
 
     /**
-     * @var string
+     * @var ?string
      */
-    public $kintDisplayTheme;
+    public ?string $kintDisplayTheme = null;
 
     // Public Methods
     // =========================================================================
@@ -33,7 +33,7 @@ class Settings extends Model
     /**
      * @inheritdoc
      */
-    public function rules()
+    public function defineRules(): array
     {
         return [
             ['kintDisplayTheme', 'default', 'value' => 'original.css'],
